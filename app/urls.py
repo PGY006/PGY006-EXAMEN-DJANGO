@@ -17,4 +17,5 @@ urlpatterns = [
     path('carrito.html',carrito, name="carrito"),
     path('carritoDesc.html',carritoDesc, name="carritoDesc"),
     path('carritoNR.html',carritoNR, name="carritoNR"),
+    path('base.html',base, name="base"),
 ]
