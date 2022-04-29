@@ -6,7 +6,7 @@
   <div class="collapse navbar-collapse justify-content-end" id="mynavbar">
     <ul class="navbar-nav me-auto">
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'productos' %}">Productos</a>
+        <a class="nav-link" href="{% url 'productoSuscrito' %}">Productos</a>
       </li>
     </ul>
 
@@ -19,6 +19,9 @@
           <div class="dropdown-divider"></div>
           <div>
             <a href="{% url 'seguimientoSuscrito' %}" class="ms-2" style="text-decoration: none; color: black;"><i class="fa-solid fa-truck"></i> Seguimiento</a>
+          </div>
+          <div>
+            <a href="{% url 'historialdecompras' %}" class="ms-2" style="text-decoration: none; color: black;"><i class="fa-solid fa-basket-shopping"></i> Historial </a>
           </div>
           <div>
             <a href="{% url 'carritoDesc' %}" class="ms-2" style="text-decoration: none; color: black;"><i class="fa-solid fa-cart-shopping"></i> Carrito </a>

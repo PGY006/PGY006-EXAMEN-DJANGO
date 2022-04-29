@@ -43,5 +43,8 @@ def carritoDesc(request):
 def carritoNR(request):
     return render(request,'app/carritoNR.html')
 
+def historialdecompras(request):
+    return render(request,'app/historialdecompras.html')
+
 def base(request):
     return render(request,'app/base.html')
