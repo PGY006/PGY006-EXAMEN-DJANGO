@@ -39,46 +39,25 @@
 
 {% block contenido%}
 <div class="container">
-
+  {%for aux in carritoProductos%} 
   <div class="card bg-dark mb-3 mt-3">
     <div class="card-body" style="border-radius: 10%;">
       <img src="{% static 'app/img/1.webp'%}" alt="" height="200" class="border border-5">
       <div class="d-flex justify-content-between">
-        <p class="card-text" style="font-size: x-large; margin: 0; padding: 0;">Macetero Nórdico Large Negro. </p>
-        <p class="card-text" style="font-size: x-large; margin: 0; padding: 0">Precio: $39.990.</p>
+        <p class="card-text" style="font-size: x-large; margin: 0; padding: 0;">{{aux.nombre}}</p>
+        <p class="card-text" style="font-size: x-large; margin: 0; padding: 0">Precio: {{aux.precio}}</p>
       </div>
-      <p class="card-text" style="font-size: x-large;">Cantidad: 1. </p>
+      <p class="card-text" style="font-size: x-large;">Cantidad: {{aux.cantidad}}</p>
     </div>
   </div>
-
-  <div class="card bg-dark mb-3 mt-3">
-    <div class="card-body">
-      <img src="{% static 'app/img/2.webp'%}" alt="" height="200" class="border border-5" style="border-radius: 10%;">
-      <div class="d-flex justify-content-between">
-        <p class="card-text" style="font-size: x-large; margin: 0; padding: 0">Planta Aria.</p>
-        <p class="card-text" style="font-size: x-large; margin: 0; padding: 0">Precio: $29.990.</p>
-      </div>
-      <p class="card-text" style="font-size: x-large;">Cantidad: 1.</p>
-    </div>
-  </div>
-  
-  <div class="card bg-dark mb-3 mt-3">
-    <div class="card-body">
-      <img src="{% static 'app/img/3.webp'%}" alt="" height="200" class="border border-5" style="border-radius: 10%;">
-      <div class="d-flex justify-content-between">
-        <p class="card-text" style="font-size: x-large; margin: 0; padding: 0">Macetero Qatar Blanco.</p>
-        <p class="card-text" style="font-size: x-large; margin: 0; padding: 0">Precio: $35.990.</p>
-      </div>
-      <p class="card-text" style="font-size: x-large;">Cantidad: 1.</p>
-    </div>
-  </div>
+  {% endfor %}
   <hr>
   <div class="d-flex justify-content-between">
     <div>
       <p style="margin: 0; padding: 0; font-weight: bold; font-size: x-large;">Descuento: $0</p>
       <p style="margin: 0; padding: 0; font-weight: bold; font-size: x-large;">Total a pagar: $105.970</p>
     </div>
-    <button onclick="alertaNR()" type="button" class="btn btn-warning btn-block btn-lg">Proceder a pagar</button>
+    <button onclick="alerta()" type="button" class="btn btn-warning btn-block btn-lg">Proceder a pagar</button>
   </div>
 </div>
 {% endblock %}

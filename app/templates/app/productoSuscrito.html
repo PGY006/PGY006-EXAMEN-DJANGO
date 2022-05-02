@@ -34,144 +34,29 @@
 {% block contenido %}
 <div class="container-fluid">
   <div class="row">
-      <div class="col-sm-12 cajas">
           <div class="row">
             <h3 style="color: white;">Maceteros</h3>
             <hr>
-            <div class="col-sm-3">
-              <div class="card mb-4 box-shadow">
-                <img src="{% static 'app/img/Babysusan.png'%}" alt="" class="imagen-producto">
-                <div class="card-body">
-                  <p class="card-text" style= "color: black;">Planta Baby Susan</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-outline-primary" onclick="carrito()">Agregar al carrito</button>
-                      <a href="{% url 'carritoDesc' %}"  class="btn btn-outline-success">Comprar</a>
+            {%for aux in listaProductos%} 
+                <div class="col-sm-3">
+                  <div class="card mb-4 box-shadow">
+                    <img src="{% static 'app/img/1.webp'%}" alt="" class="imagen-producto">
+                    <div class="card-body">
+                      <p class="card-text" style= "color: black;">{{aux.nombre}}</p>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-outline-primary" onclick="carrito()">Agregar al carrito</button>
+                          <a href="{% url 'carrito' %}" class="btn btn-outline-success">Comprar</a>
+                        </div>
+                        <small class="text-muted">⭐${{aux.precio}}</small>
+                      </div>
                     </div>
-                    <small class="text-muted">⭐$19.990</small>
+                    <p style="color: green;">ﾠﾠStock: Mas de {{aux.stock}} stock</P>
                   </div>
                 </div>
-                <p style="color: green;">ﾠﾠStock: Más de 25 unidades</P>
-              </div>
-            </div>
-            <div class="col-sm-3">
-              <div class="card mb-4 box-shadow">
-                <img src="{% static 'app/img/planta-aria.png'%}" alt="" class="imagen-producto">
-                <div class="card-body">
-                  <p class="card-text" style= "color: black;">Planta Aria</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-outline-primary" onclick="carrito()">Agregar al carrito</button>
-                      <a href="{% url 'carritoDesc' %}"  class="btn btn-outline-success">Comprar</a>
-                    </div>
-                    <small class="text-muted">⭐$29.990</small>
-                  </div>
-                </div>
-                <p style="color: green;">ﾠﾠStock: Más de 4 unidades</P>
-              </div>
-            </div>
-            <div class="col-sm-3">
-              <div class="card mb-4 box-shadow">
-                <img src="{% static 'app/img/planta-bela.webp'%}" alt="" class="imagen-producto">
-                <div class="card-body">
-                  <p class="card-text" style= "color: black;">Planta Bela</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group maceterosbtn">
-                      <button type="button" class="btn btn-outline-primary" onclick="carrito()">Agregar al carrito</button>
-                      <a href="{% url 'carritoDesc' %}"  class="btn btn-outline-success">Comprar</a>
-                    </div>
-                    <small class="text-muted textoprueba">⭐$19.990</small>
-                  </div>
-                </div>
-                <p style="color: green;">ﾠﾠStock: Más de 15 unidades</P>
-              </div>
-            </div>
-            <div class="col-sm-3">
-              <div class="card mb-4 box-shadow">
-                <img src="{% static 'app/img/planta-karin.webp'%}" alt="" class="imagen-producto">
-                <div class="card-body">
-                  <p class="card-text" style= "color: black;">Planta Karin</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-outline-primary" onclick="carrito()">Agregar al carrito</button>
-                      <a href="{% url 'carritoDesc' %}"  class="btn btn-outline-success">Comprar</a>
-                    </div>
-                    <small class="text-muted">⭐$39.990</small>
-                  </div>
-                </div>
-                <p style="color: green;">ﾠﾠStock: Más de 10 unidades</P>
-              </div>
-            </div>
-          
-          <div class="row">
-            <h3 style="color: white;">Tierra de hojas</h3>
-            <hr>
-            <div class="col-sm-3">
-              <div class="card mb-4 box-shadow">
-                <img src="{% static 'app/img/tierradehoja-1.jpg'%}" alt="" class="imagen-producto">
-                <div class="card-body">
-                  <p class="card-text" style= "color: black;">Tierra de hojas para jardín 80L</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-outline-primary" onclick="carrito()">Agregar al carrito</button>
-                      <a href="{% url 'carritoDesc' %}" class="btn btn-outline-success">Comprar</a>
-                    </div>
-                    <small class="text-muted">⭐$8.790</small>
-                  </div>
-                </div>
-                <p style="color: green;">ﾠﾠStock: Más de 10 unidades</P>
-              </div>
-            </div>
-            <div class="col-sm-3">
-              <div class="card mb-4 box-shadow">
-                <img src="{% static 'app/img/tierradehoja-2.jpg'%}" alt="" class="imagen-producto">
-                <div class="card-body">
-                  <p class="card-text" style= "color: black;">Tierra de hojas para jardín 80L</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-outline-primary" onclick="carrito()">Agregar al carrito</button>
-                      <a href="{% url 'carritoDesc' %}"  class="btn btn-outline-success">Comprar</a>
-                    </div>
-                    <small class="text-muted">⭐$8.790</small>
-                  </div>
-                </div>
-                <p style="color: green;">ﾠﾠStock: Más de 10 unidades</P>
-              </div>
-            </div>
-            <div class="col-sm-3">
-              <div class="card mb-4 box-shadow">
-                <img src="{% static 'app/img/tierradehoja-3.jpg'%}" alt="" class="imagen-producto">
-                <div class="card-body">
-                  <p class="card-text" style= "color: black;">Tierra con abono natural 40L</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-outline-primary" onclick="carrito()">Agregar al carrito</button>
-                      <a href="{% url 'carritoDesc' %}"  class="btn btn-outline-success">Comprar</a>
-                    </div>
-                    <small class="text-muted">⭐$4.190</small>
-                  </div>
-                </div>
-                <p style="color: green;">ﾠﾠStock: Más de 5 unidades</P>
-              </div>
-            </div>
-            <div class="col-sm-3">
-              <div class="card mb-4 box-shadow">
-                <img src="{% static 'app/img/tierradehoja-4.jpg'%}" alt="" class="imagen-producto">
-                <div class="card-body">
-                  <p class="card-text" style= "color: black;">Tierra para macetero 15L</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-outline-primary" onclick="carrito()">Agregar al carrito</button>
-                      <a href="{% url 'carritoDesc' %}"  class="btn btn-outline-success">Comprar</a>
-                    </div>
-                    <small class="text-muted">⭐$3.690</small>
-                  </div>
-                </div>
-                <p style="color: green;">ﾠﾠStock: Más de 20 unidades</P>
-              </div>
-            </div>
-        </div>
-      </div>
+            {%endfor%}
+          </div>
+    </div>    
   </div>
 </div>
 {% endblock %}

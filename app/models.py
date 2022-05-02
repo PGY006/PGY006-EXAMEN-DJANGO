@@ -36,3 +36,11 @@ class Seguimiento(models.Model):
     hora_pedido = models.IntegerField()
     direccion = models.CharField(max_length=100)
     recibido = models.CharField(max_length=2)
+
+
+class carritodecompras(models.Model):
+    nombre = models.CharField(max_length=50)
+    cantidad = models.IntegerField()
+    precio = models.IntegerField()
+    def __str__(self):
+        return self.nombre

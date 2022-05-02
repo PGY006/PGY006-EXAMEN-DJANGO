@@ -19,4 +19,5 @@ urlpatterns = [
     path('carritoNR.html',carritoNR, name="carritoNR"),
     path('base.html',base, name="base"),
     path('historialdecompras.html',historialdecompras, name="historialdecompras"),
+    path('agregar_producto.html',agregar_producto, name="agregar_producto"),
 ]
