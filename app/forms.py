@@ -7,9 +7,15 @@ from .models import *
 
 
 class ProductoForm(ModelForm):
+    nombre = forms.CharField(min_length=5,max_length=20)
+    precio = forms.IntegerField(min_value=400)
     class Meta:
         model = Producto
-        fields = ['codigo','nombre','marca','precio','stock','tipo']
+        fields = ['codigo','nombre','marca','precio','stock','tipo','imagen','fecha_ingreso']
+        widgets = {
+            'fecha_ingreso' : forms.SelectDateWidget(years=range(2020,2023))
+        }
+
 
 class CarritoForm(ModelForm):
     class Meta:

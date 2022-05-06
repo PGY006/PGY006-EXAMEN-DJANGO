@@ -82,7 +82,7 @@ def agregar_producto(request):
         'form' : ProductoForm()
     }
     if request.method == 'POST':
-        formulario = ProductoForm(request.POST)
+        formulario = ProductoForm(request.POST, files=request.FILES)
         if formulario.is_valid():
             formulario.save()
             datos['mensaje'] = "Producto guardado correctamente!"
