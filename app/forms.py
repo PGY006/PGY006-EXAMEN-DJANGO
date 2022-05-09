@@ -1,3 +1,4 @@
+from dataclasses import fields
 from socket import fromshare
 from django import forms
 from django.forms import ModelForm
@@ -16,8 +17,14 @@ class ProductoForm(ModelForm):
             'fecha_ingreso' : forms.SelectDateWidget(years=range(2020,2023))
         }
 
-
 class CarritoForm(ModelForm):
     class Meta:
         model = carritodecompras
         fields = ['nombre','cantidad','precio']
+
+class UsuarioForm(ModelForm):
+    nombre = forms.CharField(min_length=5,max_length=20)
+    password = forms.CharField(min_length=5, max_length=50)
+    class Meta:
+        model = Usuario
+        fields = ['nombre','apellido','email','password','tipo_usuario']

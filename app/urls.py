@@ -20,4 +20,9 @@ urlpatterns = [
     path('base.html',base, name="base"),
     path('historialdecompras.html',historialdecompras, name="historialdecompras"),
     path('agregar_producto.html',agregar_producto, name="agregar_producto"),
+    path('modificarProducto.html/<id>/',modificarProducto, name="modificarProducto"),
+    path('listarProductos.html',listarProductos, name="listarProductos"),
+    path('eliminarProducto.html/<id>/',eliminarProducto, name="eliminarProducto"),
+    path('agregar_usuario/',agregar_usuario, name="agregar_usuario"),
+    path('listarUsuarios/',listarUsuarios, name="listarUsuarios"),
 ]

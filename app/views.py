@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
 from .forms import *
 
@@ -74,7 +74,8 @@ def carritoNR(request):
 def historialdecompras(request):
     return render(request,'app/historialdecompras.html')
 
-
+def agregar_usuario(request):
+    return render(request,'app/agregar_usuario.html')
 #SeCCION AGREGAR
 
 def agregar_producto(request):
@@ -91,4 +92,45 @@ def agregar_producto(request):
 def base(request):
     return render(request,'app/base.html')
 
+def agregar_usuario(request):
+    datos = {
+        'form' : UsuarioForm()
+    }
+    if request.method == 'POST':
+        formulario = ProductoForm(request.POST, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            datos['mensaje'] = "Usuario creado correctamente!"
+    return render(request,'app/agregar_usuario.html', datos)
 
+def modificarProducto(request, id):
+    productos =  Producto.objects.get(id=id)
+    datos = {
+        'form' : ProductoForm(instance=productos)
+    }
+    if request.method == 'POST':
+        formulario = ProductoForm(request.POST, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            datos['mensaje'] = "Producto modificado correctamente!"
+            datos['form'] = formulario
+    return render(request,'app/productos/modificarProducto.html', datos)    
+
+def listarProductos(request):
+    productosAll = Producto.objects.all()
+    datos = {
+        'listarProductos' : productosAll
+    }
+    return render(request,'app/productos/listarProductos.html',datos)
+
+def listarUsuarios(request):
+    usuariosAll = Usuario.objects.all()
+    datos = {
+        'listarUsuarios' : usuariosAll
+    }
+    return render(request,'app/usuarios/listarUsuarios.html',datos)
+
+def eliminarProducto(request, id):
+    producto = Producto.objects.get(id=id)
+    producto.delete()
+    return redirect(to="listarProductos")

@@ -1,0 +1,48 @@
+{% extends 'app/base.html' %}
+
+{% load static %}
+
+{% block navbar %}
+<div class="collapse navbar-collapse" id="mynavbar">
+  <ul class="navbar-nav me-auto">
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'productos' %}"><h5 style="color: rgb(255, 255, 255);">Productos</h5></a>
+    </li>
+  </ul>
+    <a href="{% url 'registro' %}" class="btn btn-primary boton botones">Registrarse</a>
+    <a href="{% url 'inicio' %}" class="btn btn-success boton botones">Iniciar Sesion</a>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<div class="container-fluid">
+  <div class="row">
+        <table class="table table-condensed table-striped bg-white">
+            <thead>
+                <tr>
+                    <th>NOMBRE</th>
+                    <th>APELLIDO</th>
+                    <th>EMAIL</th>
+                    <th>PASSWORD</th>
+                    <th>TIPO DE USUARIO</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for aux in listarUsuarios %}
+                <tr>
+                    <td>{{ aux.nombre }}</td>
+                    <td>{{ aux.apellido }}</td>
+                    <td>{{ aux.email }}</td>
+                    <td>{{ aux.password }}</td>
+                    <td>{{ aux.tipo_usuario }}</td>
+                    <td>
+                        <a href="" class="btn btn-info">Modificar</a>
+                        <a href="" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>   
+   </div>   
+</div>
+{% endblock %}
