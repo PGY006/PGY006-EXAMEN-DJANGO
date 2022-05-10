@@ -87,7 +87,7 @@ def agregar_producto(request):
         if formulario.is_valid():
             formulario.save()
             datos['mensaje'] = "Producto guardado correctamente!"
-    return render(request,'app/agregar_producto.html', datos)
+    return render(request,'app/productos/agregar_producto.html', datos)
 
 def base(request):
     return render(request,'app/base.html')
@@ -101,7 +101,7 @@ def agregar_usuario(request):
         if formulario.is_valid():
             formulario.save()
             datos['mensaje'] = "Usuario creado correctamente!"
-    return render(request,'app/agregar_usuario.html', datos)
+    return render(request,'app/usuarios/agregar_usuario.html', datos)
 
 def modificarProducto(request, id):
     productos =  Producto.objects.get(id=id)
@@ -115,6 +115,24 @@ def modificarProducto(request, id):
             datos['mensaje'] = "Producto modificado correctamente!"
             datos['form'] = formulario
     return render(request,'app/productos/modificarProducto.html', datos)    
+
+def modificarUsuario(request, id):
+    usuario =  Usuario.objects.get(id=id)
+    datos = {
+        'form' : UsuarioForm(instance=usuario)
+    }
+    if request.method == 'POST':
+        formulario = UsuarioForm(request.POST, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            datos['mensaje'] = "Usuario modificado correctamente!"
+            datos['form'] = formulario
+    return render(request,'app/usuarios/modificarUsuario.html', datos) 
+
+def eliminarUsuario(request, id):
+    usuario = Usuario.objects.get(id=id)
+    usuario.delete()
+    return redirect(to="listarUsuarios")
 
 def listarProductos(request):
     productosAll = Producto.objects.all()

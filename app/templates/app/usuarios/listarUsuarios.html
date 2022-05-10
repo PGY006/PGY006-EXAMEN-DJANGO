@@ -36,8 +36,8 @@
                     <td>{{ aux.password }}</td>
                     <td>{{ aux.tipo_usuario }}</td>
                     <td>
-                        <a href="" class="btn btn-info">Modificar</a>
-                        <a href="" class="btn btn-danger">Eliminar</a>
+                        <a href="{% url 'modificarUsuario' aux.id %}" class="btn btn-info">Modificar</a>
+                        <a href="{% url 'eliminarUsuario' aux.id %}" class="btn btn-danger">Eliminar</a>
                     </td>
                 </tr>
                 {% endfor %}
