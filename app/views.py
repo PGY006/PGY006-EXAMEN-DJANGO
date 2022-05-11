@@ -103,8 +103,8 @@ def agregar_usuario(request):
             datos['mensaje'] = "Usuario creado correctamente!"
     return render(request,'app/usuarios/agregar_usuario.html', datos)
 
-def modificarProducto(request, id):
-    productos =  Producto.objects.get(id=id)
+def modificarProducto(request, codigo):
+    productos =  Producto.objects.get(codigo=codigo)
     datos = {
         'form' : ProductoForm(instance=productos)
     }
@@ -148,7 +148,10 @@ def listarUsuarios(request):
     }
     return render(request,'app/usuarios/listarUsuarios.html',datos)
 
-def eliminarProducto(request, id):
-    producto = Producto.objects.get(id=id)
+def eliminarProducto(request, codigo):
+    producto = Producto.objects.get(codigo=codigo)
     producto.delete()
     return redirect(to="listarProductos")
+
+def agregarCarrito():
+    producto = Producto.objects.get()

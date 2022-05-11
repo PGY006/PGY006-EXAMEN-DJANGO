@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% load crispy_forms_tags %}
+
 {% block navbar %}
 <div class="collapse navbar-collapse" id="mynavbar">
   <ul class="navbar-nav me-auto">
@@ -21,7 +23,7 @@
             <form action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <table>
-                    {{form}}
+                    {{form|crispy}}
                 </table>
                 <input type="submit" class="btn btn-success" value="Guardar">
             </form>

@@ -40,11 +40,15 @@
                     <td>{{ aux.precio }}</td>
                     <td>{{ aux.stock }}</td>
                     <td>{{ aux.tipo }}</td>
-                    <td>{{ aux.imagen }}</td>
+                    {% if aux.imagen %}
+                    <td><img src="{{ aux.imagen.url }}" alt="" width="80"></td>
+                    {% else %}
+                    <td>No tiene imagen...</td>
+                    {% endif %}
                     <td>{{ aux.fecha_ingreso }}</td>
                     <td>
-                        <a href="{% url 'modificarProducto' aux.id %}" class="btn btn-info">Modificar</a>
-                        <a href="{% url 'eliminarProducto' aux.id %}" class="btn btn-danger">Eliminar</a>
+                        <a href="{% url 'modificarProducto' aux.codigo %}" class="btn btn-info">Modificar</a>
+                        <a href="{% url 'eliminarProducto' aux.codigo %}" class="btn btn-danger">Eliminar</a>
                     </td>
                 </tr>
                 {% endfor %}

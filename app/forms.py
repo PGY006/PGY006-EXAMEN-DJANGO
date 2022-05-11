@@ -12,10 +12,7 @@ class ProductoForm(ModelForm):
     precio = forms.IntegerField(min_value=400)
     class Meta:
         model = Producto
-        fields = ['codigo','nombre','marca','precio','stock','tipo','imagen','fecha_ingreso']
-        widgets = {
-            'fecha_ingreso' : forms.SelectDateWidget(years=range(2020,2023))
-        }
+        fields = ['codigo','nombre','marca','precio','stock','tipo','imagen']
 
 class CarritoForm(ModelForm):
     class Meta:
