@@ -11,7 +11,7 @@ admin.site.register(TipoProducto)
 admin.site.register(Producto, ProductoAdmin)
 
 class UsuarioAdmin(admin.ModelAdmin):
-    list_display = ['nombre','apellido','email','password','tipo_usuario']
+    list_display = ['codigo','nombre','apellido','email','password','tipo_usuario','imagen']
     search_fields = ['nombre']
     list_per_page = 3
 
@@ -26,8 +26,8 @@ class SeguimientoAdmin(admin.ModelAdmin):
 admin.site.register(Seguimiento, SeguimientoAdmin)
 
 class CarritoAdmin(admin.ModelAdmin):
-    list_display = ['nombre','cantidad','precio']
+    list_display = ['nombre','precio','imagen']
     search_fields = ['nombre']
     list_per_page = 3
 
-admin.site.register(carritodecompras)
+admin.site.register(Carrito)

@@ -2,6 +2,10 @@
 
 {% load static %}
 
+{% block imagennavbar%}
+<a href="{% url 'index' %}" style="margin-right: 10px;"><img src="{% static 'app/img/logonuevo.png' %}" alt="" height="60"></a>
+{%endblock%}
+
 {% block navbar %}
 <div class="collapse navbar-collapse" id="mynavbar">
   <ul class="navbar-nav me-auto">
@@ -15,35 +19,44 @@
 {% endblock %}
 
 {% block contenido %}
-<div class="container-fluid">
-  <div class="row">
-          <div class="row">
-            <h3 style="color: white;">Maceteros</h3>
-            <hr>
-            {%for aux in listaProductos%} 
-                <div class="col-sm-3">
-                  <div class="card mb-4 box-shadow">
-                  {% if aux.imagen %}
-                    <img src="{{ aux.imagen.url }}" class="img-fluid item-img w-100 mb-3">
-                  {% else %}
-                   <img src="{% static 'app/img/1.webp'%}" alt="" class="imagen-producto">
-                  {% endif %}
-                    <div class="card-body">
-                      <p class="card-text" style= "color: black;">{{aux.nombre}}</p>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                          <button type="button" class="btn btn-outline-primary" onclick="carrito()">Agregar al carrito</button>
-                          <a href="{% url 'carrito' %}" class="btn btn-outline-success">Comprar</a>
+        <!-- Section-->
+        <section class="py-5">
+          <div class="container px-4 px-lg-5 mt-5">
+              <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                {%for aux in listaProductos%}
+                  <div class="col mb-5">
+                      <div class="card h-100">
+                          <!-- Sale badge-->
+                          <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Oferta</div>
+                          <!-- Product image-->
+                          {% if aux.imagen %}
+                          <img class="card-img-top" src="{{aux.imagen.url}}" alt="" />
+                          {% else %}
+                          <img class="card-img-top" src="{% static 'app/img/default-placeholder'%}" alt="" />
+                          {% endif %}
+                          <!-- Product details-->
+                          <div class="card-body p-4">
+                              <div class="text-center">
+                                  <!-- Product name-->
+                                  <h5 class="fw-bolder" style="color: black;">{{aux.nombre}}</h5>
+                                  <!-- Product reviews-->
+                                  <div class="d-flex justify-content-center small text-warning mb-2">
+                                      <div class="bi-star-fill"></div>
+                                      <div class="bi-star-fill"></div>
+                                      <div class="bi-star-fill"></div>
+                                      <div class="bi-star-fill"></div>
+                                      <div class="bi-star-fill"></div>
+                                  </div>
+                                  <!-- Product price-->
+                                  <span class="text-body">⭐${{aux.precio}}</span>
+                              </div>
+                          </div>
+                          <!-- Product actions-->
                         </div>
-                        <small class="text-muted">⭐${{aux.precio}}</small>
-                      </div>
-                    </div>
-                    <p style="color: green;">ﾠﾠStock: Mas de {{aux.stock}} stock</P>
+                      
                   </div>
-                </div>
-            {%endfor%}
+                 {%endfor%}
+              </div>
           </div>
-    </div>    
-  </div>
-</div>
+      </section>
 {% endblock %}

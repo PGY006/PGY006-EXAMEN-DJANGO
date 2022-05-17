@@ -1,0 +1,121 @@
+{% extends 'app/base.html' %}
+
+{% load static %}
+
+{% block imagennavbar%}
+<a href="{% url 'indexSuscrito' %}" style="margin-right: 10px;"><img src="{% static 'app/img/logonuevo.png' %}" alt="" height="60"></a>
+{%endblock%}
+
+{% block navbar %}
+<div class="collapse navbar-collapse justify-content-end" id="mynavbar">
+    <ul class="navbar-nav me-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'productoSuscrito' %}">Productos</a>
+      </li>
+    </ul>
+  
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary dropdown-toggle me-2 botones" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fa-solid fa-user"></i>
+        </button>
+        <div class="dropdown-menu">
+            <div class="bg-dark ms-2 me-2 border border-5 border-primary fotoperfil"></div>
+            <div class="dropdown-divider"></div>
+            <div>
+              <a href="{% url 'seguimiento' %}" class="ms-2" style="text-decoration: none; color: black;"><i class="fa-solid fa-truck"></i> Seguimiento</a>
+            </div>
+            <div>
+              <a href="{% url 'Carro' %}" class="ms-2" style="text-decoration: none; color: black;"><i class="fa-solid fa-cart-shopping"></i> Carrito </a>
+            </div>
+            <div>
+              <a href="{% url 'indexRegistrado' %}" class="ms-2" style="text-decoration: none; color: black;"><i class="fa-solid fa-basket-shopping"></i> Desuscribirse </a>
+            </div>
+            <div class="dropdown-divider"></div>
+            <div class="ms-2" style="cursor: pointer;" onclick="cerrarsesion()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar Sesión</div>
+        </div>
+      </div>
+{% endblock %}
+
+{% block contenido %}
+<section class="h-100" style="background-color: rgb(55, 55, 55); color: black;">
+    <div class="container h-100 py-5">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-10">
+  
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="fw-normal mb-0 text-white">Historial de compras</h3>
+          </div>
+  
+          <div class="card rounded-3 mb-4">
+            <div class="card-body p-4">
+              <div class="row d-flex justify-content-between align-items-center">
+                <div class="col-md-2 col-lg-2 col-xl-2">
+                  <img
+                    src="{% static 'app/img/1.webp'%}"
+                    class="img-fluid rounded-3" alt="Cotton T-shirt">
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-4">
+                  <p class="lead fw-normal mb-2">Macetero Nórdico Large Negro</p>
+                  <p><span class="text-muted">Cantidad: </span>1</span></p>
+                  <p><span class="text-muted">Fecha de pedido: </span>10/2/2022</span></p>
+                </div>
+                <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                  <h5 class="mb-0">$39.990</h5>
+                </div>
+                <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                    <a href="{% url 'seguimientoSuscrito' %}" class="text-danger"><i class="fa-solid fa-truck"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="card rounded-3 mb-4">
+            <div class="card-body p-4">
+              <div class="row d-flex justify-content-between align-items-center">
+                <div class="col-md-2 col-lg-2 col-xl-2">
+                  <img
+                    src="{% static 'app/img/2.webp'%}"
+                    class="img-fluid rounded-3" alt="Cotton T-shirt">
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-4">
+                    <p class="lead fw-normal mb-2">Planta Aria</p>
+                    <p><span class="text-muted">Cantidad: </span>1</span></p>
+                    <p><span class="text-muted">Fecha de pedido: </span>15/4/2022</span></p>
+                  </div>
+                  <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                    <h5 class="mb-0">$29.990</h5>
+                  </div>
+                  <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                      <a href="{% url 'seguimiento' %}" class="text-danger"><i class="fa-solid fa-truck"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+          <div class="card rounded-3 mb-4">
+            <div class="card-body p-4">
+              <div class="row d-flex justify-content-between align-items-center">
+                <div class="col-md-2 col-lg-2 col-xl-2">
+                  <img
+                    src="{% static 'app/img/3.webp'%}"
+                    class="img-fluid rounded-3" alt="Cotton T-shirt">
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-4">
+                  <p class="lead fw-normal mb-2">Macetero Qatar Blanco</p>
+                  <p><span class="text-muted">Cantidad: </span>1</span></p>
+                  <p><span class="text-muted">Fecha de pedido: </span>20/4/2022</span></p>
+                </div>
+                <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                  <h5 class="mb-0">$35.990</h5>
+                </div>
+                <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                  <a href="{% url 'seguimiento' %}" class="text-danger"><i class="fa-solid fa-truck"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

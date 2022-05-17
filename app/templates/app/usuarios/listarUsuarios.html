@@ -9,8 +9,6 @@
       <a class="nav-link" href="{% url 'productos' %}"><h5 style="color: rgb(255, 255, 255);">Productos</h5></a>
     </li>
   </ul>
-    <a href="{% url 'registro' %}" class="btn btn-primary boton botones">Registrarse</a>
-    <a href="{% url 'inicio' %}" class="btn btn-success boton botones">Iniciar Sesion</a>
 </div>
 {% endblock %}
 
@@ -25,6 +23,8 @@
                     <th>EMAIL</th>
                     <th>PASSWORD</th>
                     <th>TIPO DE USUARIO</th>
+                    <th>IMAGEN</th>
+                    <th>FECHA DE INGRESO</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,9 +35,15 @@
                     <td>{{ aux.email }}</td>
                     <td>{{ aux.password }}</td>
                     <td>{{ aux.tipo_usuario }}</td>
+                    {% if aux.imagen %}
+                    <td><img src="{{ aux.imagen.url }}" alt="" width="80"></td>
+                    {% else %}
+                    <td>No tiene imagen...</td>
+                    {% endif %}
+                    <td>{{ aux.created_ad }}</td>
                     <td>
-                        <a href="{% url 'modificarUsuario' aux.id %}" class="btn btn-info">Modificar</a>
-                        <a href="{% url 'eliminarUsuario' aux.id %}" class="btn btn-danger">Eliminar</a>
+                        <a href="{% url 'modificarUsuario' aux.codigo %}" class="btn btn-info">Modificar</a>
+                        <a onclick="eliminarusuario({{ aux.codigo }})" class="btn btn-danger">Eliminar</a>
                     </td>
                 </tr>
                 {% endfor %}

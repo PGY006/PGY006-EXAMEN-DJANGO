@@ -16,12 +16,12 @@ class ProductoForm(ModelForm):
 
 class CarritoForm(ModelForm):
     class Meta:
-        model = carritodecompras
-        fields = ['nombre','cantidad','precio']
+        model = Carrito
+        fields = ['nombre','precio','imagen']
 
 class UsuarioForm(ModelForm):
     nombre = forms.CharField(min_length=5,max_length=20)
     password = forms.CharField(min_length=5, max_length=50)
     class Meta:
         model = Usuario
-        fields = ['nombre','apellido','email','password','tipo_usuario']
+        fields = ['codigo','nombre','apellido','email','password','tipo_usuario','imagen']

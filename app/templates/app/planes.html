@@ -2,11 +2,18 @@
 
 {% load static %}
 
+{% block imagennavbar%}
+<a href="{% url 'indexRegistrado' %}" style="margin-right: 10px;"><img src="{% static 'app/img/logonuevo.png' %}" alt="" height="60"></a>
+{%endblock%}
+
 {% block navbar %}
 <div class="collapse navbar-collapse justify-content-end" id="mynavbar">
   <ul class="navbar-nav me-auto">
     <li class="nav-item">
       <a class="nav-link" href="{% url 'productoRegistrado' %}">Productos</a>
+    </li>
+    <li>
+      <a class="nav-link" href="{% url 'seguimiento' %}">Seguimiento</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="{% url 'planes' %}"><h5 style="color: rgb(255, 255, 255);">Suscripción</h5></a>
@@ -26,7 +33,7 @@
           <a href="{% url 'historialdecompras' %}" class="ms-2" style="text-decoration: none; color: black;"><i class="fa-solid fa-basket-shopping"></i> Historial </a>
         </div>
         <div>
-          <a href="{% static 'carrito' %}" class="ms-2" style="text-decoration: none; color: black;"><i class="fa-solid fa-cart-shopping"></i> Carrito </a>
+          <a href="{% url 'Carro' %}" class="ms-2" style="text-decoration: none; color: black;"><i class="fa-solid fa-cart-shopping"></i> Carrito </a>
         </div>
         <div class="dropdown-divider"></div>
         <div class="ms-2" style="cursor: pointer;" onclick="cerrarsesion()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar Sesión</div>

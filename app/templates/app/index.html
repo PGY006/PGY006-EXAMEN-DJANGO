@@ -2,6 +2,10 @@
 
 {% load static %}
 
+{% block imagennavbar%}
+<a href="{% url 'index' %}" style="margin-right: 10px;"><img src="{% static 'app/img/logonuevo.png' %}" alt="" height="60"></a>
+{%endblock%}
+
 {% block navbar %}
 <div class="collapse navbar-collapse" id="mynavbar">
   <ul class="navbar-nav me-auto">
@@ -46,13 +50,9 @@
               <div class="card mb-4 box-shadow">
                 <img src="{% static 'app/img/4.webp'%}" alt="" width="400">
                 <div class="card-body">
-                  <p class="card-text" style= "color: black;">Planta Aria </p>
+                  <p class="card-text" style= "color: black;">Planta Aria</p>
                   <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-outline-primary" onclick="carrito()">Agregar al carrito</button>
-                      <a href="{% url 'carritoNR' %}" class="btn btn-outline-success">Comprar</a>
-                    </div>
-                    <p style="color: green; font-weight: bold;">⭐$39.990</p>
+                    <small class="text-body">⭐$39.990</small>
                   </div>
                 </div>
                 <p style="color: green;">ﾠﾠStock: Más de 5 unidades</P>
@@ -69,11 +69,7 @@
                   <div class="card-body">
                     <p class="card-text" style= "color: black;">Planta Aria</p>
                     <div class="d-flex justify-content-between align-items-center">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-outline-primary" onclick="carrito()">Agregar al carrito</button>
-                        <a href="{% url 'carritoNR' %}" class="btn btn-outline-success">Comprar</a>
-                      </div>
-                      <p style="color: green; font-weight: bold;">⭐$39.990</p>
+                      <small class="text-body">⭐$39.990</small>
                     </div>
                   </div>
                   <p style="color: green;">ﾠﾠStock: Más de 5 unidades</P>
@@ -90,11 +86,7 @@
                   <div class="card-body">
                     <p class="card-text" style= "color: black;">Macetero Qatar Blanco</p>
                     <div class="d-flex justify-content-between align-items-center">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-outline-primary" onclick="carrito()">Agregar al carrito</button>
-                        <a href="{% url 'carritoNR' %}" class="btn btn-outline-success">Comprar</a>
-                      </div>
-                      <p style="color: green; font-weight: bold;">⭐$35.990</p>
+                      <small class="text-body">⭐$35.990</small>
                     </div>
                   </div>
                   <p style="color: green;">ﾠﾠStock: Más de 8 unidades</P>

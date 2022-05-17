@@ -1,7 +1,9 @@
 {% extends 'app/base.html' %}
 
 {% load static %}
-
+{% block imagennavbar%}
+<a href="{% url 'indexSuscrito' %}" style="margin-right: 10px;"><img src="{% static 'app/img/logonuevo.png' %}" alt="" height="60"></a>
+{%endblock%}
 {% block navbar %}
 <div class="collapse navbar-collapse justify-content-end" id="mynavbar">
   <ul class="navbar-nav me-auto">
@@ -22,6 +24,9 @@
           </div>
           <div>
             <a href="{% url 'historialdecompras' %}" class="ms-2" style="text-decoration: none; color: black;"><i class="fa-solid fa-basket-shopping"></i> Historial </a>
+          </div>
+          <div>
+            <a href="{% url 'indexRegistrado' %}" class="ms-2" style="text-decoration: none; color: black;"><i class="fa-solid fa-basket-shopping"></i> Desuscribirse </a>
           </div>
           <div class="dropdown-divider"></div>
           <div class="ms-2" style="cursor: pointer;" onclick="cerrarsesion()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar Sesión</div>

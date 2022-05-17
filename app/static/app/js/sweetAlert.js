@@ -7,40 +7,10 @@ function cerrarsesion(){
         cancelButtonColor: '#d33',
         confirmButtonText: 'Sí!',
         cancelButtonText: 'Cancelar'
-      }).then((result) => {
-        if (result.isConfirmed) {
-            setTimeout(myURL,250);
-            function myURL(){
-                location.href ="index.html"
-            }
-        }
+      }).then(function() {
+        window.location.href = "index/"
       })
   }
-
-    function alerta(){
-
-        Swal.fire({
-            title: '¿Esta seguro de continuar con la compra?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#42E51A',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sí, confirmo!',
-            cancelButtonText: 'Cancelar',
-            }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Gracias! Tu pedido se ha confirmado',
-                    showConfirmButton: false
-                })
-                setTimeout(myURL,1500);
-                function myURL(){
-                    location.href ="indexRegistrado.html"
-                }
-            }
-            })
-        }
         function alertaNR(){
 
             Swal.fire({
@@ -99,7 +69,7 @@ function registrado(){
 
     setTimeout(myURL,1500);
     function myURL(){
-        location.href ="indexRegistrado.html"
+        location.href ="indexRegistrado"
     }
 
 }
@@ -124,12 +94,11 @@ function registrado(){
 
             setTimeout(myURL,1500);
             function myURL(){
-              location.href ="indexSuscrito.html"
+              location.href ="indexSuscrito"
             }
         }
         })
     }
-
 
 function carrito(){
     Swal.fire({
