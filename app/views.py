@@ -201,3 +201,6 @@ def delete_product_suscrito(request):
         item = Carrito.objects.all()
         item.delete()
         return render(request, "app/finalizadoSuscrito.html")
+
+def empleado(request):
+        return render(request, "app/empleado.html")
