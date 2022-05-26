@@ -99,12 +99,3 @@ function registrado(){
         }
         })
     }
-
-function carrito(){
-    Swal.fire({
-        icon: 'success',
-        title: 'Producto añadido al carrito',
-        showConfirmButton: false,
-        timer: 1500
-      })
-}

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import *
 from .forms import *
+from django.contrib import messages
 
 
 # Create your views here.
@@ -34,6 +35,7 @@ def productosRegistrados(request):
         prod.nombre = request.POST.get('txtNombre')
         prod.precio = request.POST.get('txtPrecio')
         prod.imagen = request.POST.get('txtImagen')
+        messages.success(request,'Producto agregado el carrito correctamente!')
         prod.save()
     return render(request, 'app/productosRegistrados.html', datos)
 
@@ -110,7 +112,7 @@ def agregar_producto(request):
         formulario = ProductoForm(request.POST, files=request.FILES)
         if formulario.is_valid():
             formulario.save()
-            datos['mensaje'] = "Producto guardado correctamente!"
+            messages.success(request,'Producto guardado correctamente!')
     return render(request,'app/productos/agregar_producto.html', datos)
 
 def base(request):
@@ -136,7 +138,7 @@ def modificarProducto(request, codigo):
         formulario = ProductoForm(request.POST, files=request.FILES, instance=productos)
         if formulario.is_valid():
             formulario.save()
-            datos['mensaje'] = "Producto modificado correctamente!"
+            messages.success(request,'Producto guardado correctamente!')
             datos['form'] = formulario
     return render(request,'app/productos/modificarProducto.html', datos)    
 

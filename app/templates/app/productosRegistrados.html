@@ -41,7 +41,7 @@
               <a href="{% url 'planes' %}" class="ms-2" style="text-decoration: none; color: black;"><i class="fa-solid fa-star"></i> Suscripción</a>
             </div>
             <div class="dropdown-divider"></div>
-            <div class="ms-2" style="cursor: pointer;" onclick="cerrarsesion()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar Sesión</div>
+            <a href="{% url 'logout' %}" class="ms-2" style="cursor: pointer;" onclick="cerrarsesion()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Cerrar Sesión</a>
         </div>
       </div>
 {% endblock %}
@@ -90,9 +90,22 @@
                               <input type="hidden" name="txtPrecio" value="{{ aux.precio }}">
                               <input type="hidden" name="txtImagen" value="{{ aux.imagen }}">
                               
-                              <input class="btn btn-outline-primary btn-lg" type="submit" onclick="carrito()" value="Agregar al Carrito">
+                              <input class="btn btn-outline-primary btn-lg" type="submit" value="Agregar al Carrito">
   
                             </form>
+                            {% if messages %}
+                              {% for msj in messages %}
+                                <script>
+                                  Swal.fire({
+                                    title: 'Guardado!',
+                                    text: '{{ msj }}',
+                                    icon: 'success',
+                                    showConfirmButton: false,
+                                    timer: 2000
+                                });
+                                </script>
+                              {% endfor %}
+                            {% endif %}
                           </div>
                         </div>
                       
