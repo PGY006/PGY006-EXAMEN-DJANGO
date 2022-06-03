@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import *
 from .forms import *
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required, permission_required
 
 
 # Create your views here.
@@ -39,6 +40,7 @@ def productosRegistrados(request):
         prod.save()
     return render(request, 'app/productosRegistrados.html', datos)
 
+@login_required(login_url='planes')
 def indexRegistrado(request):
     return render(request,'app/indexRegistrado.html')
 
@@ -104,6 +106,7 @@ def historialsuscrito(request):
 
 #SeCCION AGREGAR
 
+@permission_required('app.add_producto')
 def agregar_producto(request):
     datos = {
         'form' : ProductoForm()
@@ -118,6 +121,7 @@ def agregar_producto(request):
 def base(request):
     return render(request,'app/base.html')
 
+@permission_required('app.add_usuario')
 def agregar_usuario(request):
     datos = {
         'form' : UsuarioForm()
@@ -128,6 +132,7 @@ def agregar_usuario(request):
             formulario.save()
             datos['mensaje'] = "Usuario creado correctamente!"
     return render(request,'app/usuarios/agregar_usuario.html', datos)
+
 
 def modificarProducto(request, codigo):
     productos =  Producto.objects.get(codigo=codigo)
@@ -206,3 +211,14 @@ def delete_product_suscrito(request):
 
 def empleado(request):
         return render(request, "app/empleado.html")
+
+def registroUsuario(request):
+    datos = {
+        'form' : FormularioUserRegistro
+    }
+    if request.method == 'POST':
+        formulario = FormularioUserRegistro(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request,'Usuario Registrado correctamente!')
+    return render(request,'registration/registroUsuario.html',datos)

@@ -6,7 +6,12 @@
 <div class="collapse navbar-collapse" id="mynavbar">
   <ul class="navbar-nav me-auto">
     <li class="nav-item">
-      <a class="nav-link" href="{% url 'productos' %}"><h5 style="color: rgb(255, 255, 255);">Productos</h5></a>
+      {% if user.is_authenticated %}
+      <a class="nav-link" href="http://127.0.0.1:8000/admin/"><h5 style="color: rgb(255, 255, 255);">Admin</h5></a>
+      {% endif %}
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="http://127.0.0.1:8000/admin/"><h5 style="color: rgb(255, 255, 255);">Admin</h5></a>
     </li>
   </ul>
 </div>
@@ -42,8 +47,12 @@
                     {% endif %}
                     <td>{{ aux.created_ad }}</td>
                     <td>
+                        {% if perms.app.change_producto %}
                         <a href="{% url 'modificarUsuario' aux.codigo %}" class="btn btn-info">Modificar</a>
+                        {% endif %}
+                        {% if perms.app.delete_producto %}
                         <a onclick="eliminarusuario({{ aux.codigo }})" class="btn btn-danger">Eliminar</a>
+                        {% endif %}
                     </td>
                 </tr>
                 {% endfor %}

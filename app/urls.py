@@ -30,4 +30,5 @@ urlpatterns = [
     path('finalizado/',delete_product, name="delete_product"),
     path('finalizadoSuscrito/',delete_product_suscrito, name="delete_product_suscrito"),
     path('empleado/',empleado, name="empleado"),
+    path('registroUsuario/',registroUsuario, name="registroUsuario"),
 ]

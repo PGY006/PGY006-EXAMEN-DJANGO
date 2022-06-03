@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app.apps.AppConfig',
     'colorfield',
-    'crispy_forms'
+    'crispy_forms',
+    'rest_framework',
 ]
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
@@ -81,8 +82,15 @@ WSGI_APPLICATION = 'Floreria.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'floreria',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'USER': 'root',
+        'PASSWORD': '',
+        'OPTIONS': {
+            'init_command': "SET SQL_MODE = 'STRICT_TRANS_TABLES'"
+        }
     }
 }
 
