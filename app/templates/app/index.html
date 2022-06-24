@@ -1,112 +1,37 @@
 {% extends 'app/base.html' %}
 
 {% load static %}
-
-{% block imagennavbar%}
-<a href="{% url 'index' %}" style="margin-right: 10px;"><img src="{% static 'app/img/logonuevo.png' %}" alt="" height="60"></a>
-{%endblock%}
-
-{% block navbar %}
-<div class="collapse navbar-collapse" id="mynavbar">
-  <ul class="navbar-nav me-auto">
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'productos' %}">Productos</a>
-    </li>
-  </ul>
-    <a href="{% url 'registroUsuario' %}" class="btn btn-primary boton botones">Registrarse</a>
-    <a href="{% url 'login' %}" class="btn btn-success boton botones">Iniciar Sesion</a>
-</div>
-{% endblock %}
-
+{% load humanize %}
 {% block contenido %}
-
-<div class="text-center bg-image" style="background-image: url('{% static 'app/img/wallpaperflare.com_wallpaper.jpg' %}'); height: 500px; background-size: cover;">
-  <div class="d-flex justify-content-center align-items-center h-100">
-      <h1 style="color: white;">Florería Online</h1>
-  </div>
-</div>
-
-<div class="container-fluid bg-dark">
-  <div class="row">
-    <h4 style="color: white; text-align: center;">Productos Destacados</h4>
-      <hr style="color: white;">
-    <div class="col-sm-12">
-      <!-- Carousel -->
-    <div id="demo" class="carousel slide" data-bs-ride="carousel">
-
-      <!-- Indicators/dots -->
-      <div class="carousel-indicators">
-        <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-        <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-        <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
-      </div>
-
-      <!-- The slideshow/carousel -->
-      <div class="carousel-inner">
-
-        <div class="carousel-item active">
-          <div class="row">
-            <div class="col-sm-12 d-flex justify-content-center">
-              <div class="card mb-4 box-shadow">
-                <img src="{% static 'app/img/4.webp'%}" alt="" width="400">
-                <div class="card-body">
-                  <p class="card-text" style= "color: black;">Planta Aria</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <small class="text-body">⭐$39.990</small>
-                  </div>
-                </div>
-                <p style="color: green;">ﾠﾠStock: Más de 5 unidades</P>
-              </div>
-            </div>
-          </div>
-      </div>
-
-        <div class="carousel-item">
-            <div class="row">
-              <div class="col-sm-12 d-flex justify-content-center">
-                <div class="card mb-4 box-shadow">
-                  <img src="{% static 'app/img/2.webp'%}" alt="" width="400">
-                  <div class="card-body">
-                    <p class="card-text" style= "color: black;">Planta Aria</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <small class="text-body">⭐$39.990</small>
-                    </div>
-                  </div>
-                  <p style="color: green;">ﾠﾠStock: Más de 5 unidades</P>
-                </div>
-              </div>
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <h4 class="text-center">Productos Disponibles</h4>
+        {%for aux in listaProductos%}
+        <div class="col-sm-12 col-xl-3">
+            <div class="bg-secondary text-center rounded p-4">
+                <h6 class="mb-0">{{aux.nombre}}</h6>
+                <img src="{{aux.imagen.url}}" alt="" class="img-thumbnail" width="200" height="200">
+                {% if user.is_authenticated %}
+                    {% if aux.stock >= 1 %}
+                    <h6 class="mb-0">Precio: {{aux.precio|intcomma}}</h6>
+                    <h6 class="mb-0">Stock: {{aux.stock|intcomma}}</h6>
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="txtNombre" value="{{ aux.nombre }}">
+                            <input type="hidden" name="txtCodigo" value="{{ aux.codigo }}">
+                            <input type="hidden" name="txtUsuario" value="{{ user.get_username }}">
+                            <input type="hidden" name="txtPrecio" value="{{ aux.precio }}">
+                            <input type="hidden" name="txtImagen" value="{{ aux.imagen }}">
+                            <input name="txtStock" min="1" max="{{aux.stock}}" name="quantity" value="1" type="number"/>
+                            <input class="btn btn-outline-primary btn-lg" type="submit" value="Agregar al Carrito">
+                        </form>
+                    {% else %}
+                        <h3>Producto sin stock</h3>
+                    {% endif %}
+                {% endif %}
             </div>
         </div>
-        
-        <div class="carousel-item">
-            <div class="row">
-              <div class="col-sm-12 d-flex justify-content-center">
-                <div class="card mb-4 box-shadow">
-                  <img src="{% static 'app/img/3.webp'%}" alt="" width="400">
-                  <div class="card-body">
-                    <p class="card-text" style= "color: black;">Macetero Qatar Blanco</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                      <small class="text-body">⭐$35.990</small>
-                    </div>
-                  </div>
-                  <p style="color: green;">ﾠﾠStock: Más de 8 unidades</P>
-                </div>
-              </div>
-            </div>
-        </div>
-      </div>  
-
-      <!-- Left and right controls/icons -->
-      <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-        <span class="carousel-control-next-icon"></span>
-      </button>
-      <hr style="color: white;">
+        {%endfor%}
     </div>
-    </div>
-  </div>
 </div>
-
 {% endblock %}

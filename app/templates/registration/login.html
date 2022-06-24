@@ -4,25 +4,10 @@
 
 {% load crispy_forms_tags %}
 
-{% block imagennavbar%}
-<a href="{% url 'index' %}" style="margin-right: 10px;"><img src="{% static 'app/img/logonuevo.png' %}" alt="" height="60"></a>
-{%endblock%}
-
-{% block navbar%}
-<div class="collapse navbar-collapse" id="mynavbar">
-  <ul class="navbar-nav me-auto">
-    <li class="nav-item">
-      <a class="nav-link" href="{% url 'productos' %}">Productos</a>
-    </li>
-  </ul>
-    <a href="{% url 'registroUsuario' %}" class="btn btn-primary boton botones">Registrarse</a>
-</div>
-{% endblock %}
-
 {% block contenido%}
 <div class="container">
   <div class="row">
-      <div class="col-sm-12">
+      <div class="col-sm-12 mt-5">
         
         <form action="" method="POST">
             {% csrf_token %}

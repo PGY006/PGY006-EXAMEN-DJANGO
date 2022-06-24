@@ -9,10 +9,9 @@ from django.contrib.auth.models import User
 # Creamos un template del formulario
 
 class FormularioUserRegistro(UserCreationForm):
-
     class Meta:
         model = User
-        fields = ['username','first_name','last_name','password1','password2']
+        fields = ['username','password1','password2']
 
 
 class ProductoForm(ModelForm):
@@ -25,14 +24,29 @@ class ProductoForm(ModelForm):
 class CarritoForm(ModelForm):
     class Meta:
         model = Carrito
-        fields = ['nombre','precio','imagen']
+        fields = ['codigo', 'nombre','usuario','precio','imagen', 'cantidad']
 
-class UsuarioForm(ModelForm):
-    nombre = forms.CharField(min_length=5,max_length=20)
-    password = forms.CharField(min_length=5, max_length=50)
+class UserForm(ModelForm):
     class Meta:
-        model = Usuario
-        fields = ['codigo','nombre','apellido','email','password','tipo_usuario','imagen']
+        model = User
+        fields = ['username','first_name','last_name','email','password']
 
+class SuscritoForm(ModelForm):
+    class Meta:
+        model = Suscrito
+        fields = ['nombre','estado']
 
-        
+class HistorialForm(ModelForm):
+    class Meta:
+        model = Historial
+        fields = ['estado']
+
+class CarritoHistoricoForm(ModelForm):
+    class Meta:
+        model = CarritoHistorico
+        fields = ['nombre','usuario','codigo','precio','imagen', 'cantidad']
+
+class SeguimientoForm(ModelForm):
+    class Meta:
+        model = Seguimiento
+        fields = ['codigo','estado']

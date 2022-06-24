@@ -56,29 +56,66 @@ class Usuario(models.Model):
 
     class Meta:
         db_table = 'db_usuario'
-        
-class Seguimiento(models.Model):
-    codigo = models.IntegerField(null=False, primary_key=True)
-    fecha_pedido = models.DateField()
-    hora_pedido = models.IntegerField()
-    direccion = models.CharField(max_length=100)
-    recibido = models.CharField(max_length=2)
-    created_ad = models.DateField(auto_now_add = True)
-    updated_ad = models.DateField(auto_now = True)
-
-    def __str__(self):
-        return self.nombre
-
-    class Meta:
-        db_table = 'db_seguimiento'
 
 class Carrito(models.Model):
+    codigo = models.IntegerField()
     nombre = models.CharField(max_length=50)
+    usuario = models.CharField(max_length=50)
     precio = models.IntegerField()
     imagen = models.ImageField(upload_to="carrito", null=True)
-
+    cantidad = models.IntegerField()
+    
     def __str__(self):
         return self.nombre
 
     class Meta:
         db_table = 'db_item_carrito'
+
+class Suscrito(models.Model):
+    nombre = models.CharField(max_length=50, primary_key=True, null=False)
+    estado = models.CharField(max_length=2)
+
+    def __str__(self):
+        return self.nombre
+
+    class Meta:
+        db_table = 'db_suscrito'
+
+
+class Seguimiento(models.Model):
+    codigo = models.IntegerField(null=False, primary_key=True)
+    estado = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.estado
+
+    class Meta:
+        db_table = 'db_seguimiento'
+
+class Historial(models.Model):
+    orden = models.IntegerField()
+    usuario = models.CharField(max_length=50)
+    preciototal = models.IntegerField()
+    estado = models.ForeignKey(Seguimiento, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.usuario
+
+    class Meta:
+        db_table = 'db_historial'
+
+
+class CarritoHistorico(models.Model):
+    nombre = models.CharField(max_length=50)
+    usuario = models.CharField(max_length=50)
+    codigo = models.IntegerField(null=True)
+    codigoorden = models.IntegerField(null=True)
+    precio = models.IntegerField()
+    imagen = models.ImageField(upload_to="carrito", null=True)
+    cantidad = models.IntegerField()
+    
+    def __str__(self):
+        return self.nombre
+
+    class Meta:
+        db_table = 'db_carrito_historico'

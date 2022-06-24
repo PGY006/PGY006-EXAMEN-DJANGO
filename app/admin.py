@@ -10,24 +10,31 @@ class ProductoAdmin(admin.ModelAdmin):
 admin.site.register(TipoProducto)
 admin.site.register(Producto, ProductoAdmin)
 
-class UsuarioAdmin(admin.ModelAdmin):
-    list_display = ['codigo','nombre','apellido','email','password','tipo_usuario','imagen']
-    search_fields = ['nombre']
-    list_per_page = 3
-
-admin.site.register(TipoUsuario)
-admin.site.register(Usuario, UsuarioAdmin)
-
-class SeguimientoAdmin(admin.ModelAdmin):
-    list_display = ['codigo','fecha_pedido','hora_pedido','direccion','recibido']
-    search_fields = ['codigo']
-    list_per_page = 3
-
-admin.site.register(Seguimiento, SeguimientoAdmin)
-
 class CarritoAdmin(admin.ModelAdmin):
-    list_display = ['nombre','precio','imagen']
+    list_display = ['codigo','nombre','usuario','precio','imagen', 'cantidad']
     search_fields = ['nombre']
     list_per_page = 3
 
 admin.site.register(Carrito)
+
+class SuscritoAdmin(admin.ModelAdmin):
+    list_display = ['nombre','estado']
+    search_fields = ['nombre']
+    list_per_page = 3
+
+admin.site.register(Suscrito)
+
+class HistorialAdmin(admin.ModelAdmin):
+    list_display = ['orden','usuario','preciototal', 'estado']
+    search_fields = ['orden']
+    list_per_page = 3
+
+admin.site.register(Seguimiento)
+admin.site.register(Historial, HistorialAdmin)
+
+class CarritoHistoricoAdmin(admin.ModelAdmin):
+    list_display = ['nombre','usuario','codigo','precio','imagen', 'cantidad']
+    search_fields = ['nombre']
+    list_per_page = 3
+
+admin.site.register(CarritoHistorico)

@@ -1,6 +1,6 @@
 frameElement
 
-function eliminarusuario(codigo){
+function eliminarusuario(id){
     Swal.fire({
         title: '¿Estas seguro de eliminar el Usuario?',
         text: "Esto no se puede revertir!",
@@ -16,7 +16,7 @@ function eliminarusuario(codigo){
             'El Usuario ha sido eliminado.',
             'success'
           ).then(function() {
-            window.location.href = "/eliminarUsuario/"+codigo+"/"
+            window.location.href = "/eliminarUsuario/"+id+"/"
           })
         }
       })

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'app.apps.AppConfig',
     'colorfield',
     'crispy_forms',
@@ -145,5 +146,5 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
-LOGIN_REDIRECT_URL = '/indexRegistrado/'
-LOGOUT_REDIRECT_URL = '/index/'
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
