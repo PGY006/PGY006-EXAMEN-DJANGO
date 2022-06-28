@@ -26,7 +26,8 @@ def index(request):
     historial = Historial.objects.all()
     code = 1
     for i in historial:
-        code += 1
+        if request.user.get_username() in i.usuario:
+            code += 1
 
     if request.method == 'POST':
         prod = Carrito()
@@ -35,6 +36,13 @@ def index(request):
         precio = request.POST.get('txtPrecio')
         usuarioprod = request.POST.get('txtUsuario')
         nombre = request.POST.get('txtNombre')
+
+        #Se descuenta el stock
+        stock = request.POST.get('txtStock')
+        codigo = request.POST.get('txtCodigo')
+        product = Producto.objects.get(codigo=int(codigo))
+        product.stock -= int(stock)
+        product.save()
 
         if Carrito.objects.filter(Q(codigo=codigoprod) & Q(usuario=usuarioprod) & Q(nombre=nombre)).exists():
             product = Carrito.objects.get(Q(codigo=codigoprod) & Q(usuario=usuarioprod) & Q(nombre=nombre))
@@ -66,12 +74,6 @@ def index(request):
             carroHist.imagen = request.POST.get('txtImagen')
             carroHist.save()
 
-        stock = request.POST.get('txtStock')
-        codigo = request.POST.get('txtCodigo')
-        product = Producto.objects.get(codigo=int(codigo))
-        product.stock -= int(stock)
-        product.save()
-
     return render(request, 'app/index.html', datos)
 
 @login_required
@@ -79,7 +81,8 @@ def delete_product(request):
     historial = Historial.objects.all()
     code = 1
     for i in historial:
-        code += 1
+        if request.user.get_username() in i.usuario:
+            code += 1
 
     carritoAll = Carrito.objects.all()
     total = 0
@@ -88,19 +91,23 @@ def delete_product(request):
         if request.user.get_username() in i.usuario:
             total += i.precio
             totalDesc += ( i.precio) * 0.95
-
+    itemsencarro = 0
+    for i in carritoAll:
+        if request.user.get_username() in i.usuario:
+            itemsencarro += 1
     if request.method == "GET":
         #Creo una orden
-        hist = Historial()
-        hist.orden = code
-        hist.usuario = request.user.get_username()
-        hist.preciototal = total
-        hist.estado = Seguimiento.objects.get(codigo=1)
-        hist.save()
-        for i in carritoAll:
-            if request.user.get_username() == i.usuario:
-                item = Carrito.objects.get(Q(codigo=i.codigo) & Q(usuario=i.usuario))
-                item.delete()
+        if itemsencarro > 0:
+            hist = Historial()
+            hist.orden = code
+            hist.usuario = request.user.get_username()
+            hist.preciototal = total
+            hist.estado = Seguimiento.objects.get(codigo=1)
+            hist.save()
+            for i in carritoAll:
+                if request.user.get_username() == i.usuario:
+                    item = Carrito.objects.get(Q(codigo=i.codigo) & Q(usuario=i.usuario))
+                    item.delete()
     return render(request, "app/compra-finalizada.html")
 
 @login_required
@@ -115,14 +122,20 @@ def carrito(request):
             total += i.precio
             totalDesc += ( i.precio) * 0.95
             desc = total - totalDesc
-            
+    itemsencarro = 0
+    for i in carritoAll:
+        if request.user.get_username() in i.usuario:
+            itemsencarro += 1
+
     datos = {
         'listarCarrito' : carritoAll,
         'total' : total,
         'totalDesc' : totalDesc,
         'usuario' : usuario,
-        'desc' : desc
+        'desc' : desc,
+        'itemsencarro' : itemsencarro
     }
+
     if request.method == "POST":
         prod = Carrito()
         prod.id = request.POST.get('id')
@@ -139,6 +152,18 @@ def carrito(request):
             product.save()
             CarritoHistorico.objects.filter(Q(codigo=codigo) & Q(usuario=usuario)).delete()
     return render(request,'app/carrito.html',datos)
+
+@permission_required('app.add_producto')
+def agregar_producto(request):
+    datos = {
+        'form' : ProductoForm()
+    }
+    if request.method == 'POST':
+        formulario = ProductoForm(request.POST, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            messages.success(request,'Producto guardado correctamente!')
+    return render(request,'app/productos/agregar_producto.html', datos)
 
 @login_required
 def historialdecompras(request):
@@ -204,18 +229,6 @@ def apiproducto(request):
         prod.cantidad = request.POST.get('txtStock')
         prod.save()
     return render(request,'app/apiproducto.html', datos)
-
-@permission_required('app.add_producto')
-def agregar_producto(request):
-    datos = {
-        'form' : ProductoForm()
-    }
-    if request.method == 'POST':
-        formulario = ProductoForm(request.POST, files=request.FILES)
-        if formulario.is_valid():
-            formulario.save()
-            messages.success(request,'Producto guardado correctamente!')
-    return render(request,'app/productos/agregar_producto.html', datos)
 
 @permission_required('app.add_usuario')
 def agregar_usuario(request):

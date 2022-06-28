@@ -83,7 +83,10 @@
                         <div class="dropdown-menu bg-transparent border-0">
                             <a href="{% url 'listarProductos' %}" class="dropdown-item">Listar Productos</a>
                             <a href="{% url 'agregar_producto' %}" class="dropdown-item">Agregar Producto</a>
+                            <a href="{% url 'listarUsuarios' %}" class="dropdown-item">Listar Usuario</a>
+                            <a href="{% url 'agregar_usuario' %}" class="dropdown-item">Agregar Usuario</a>
                             <a href="{% url 'listarSeguimiento' %}" class="dropdown-item">Listar Seguimiento</a>
+                            <a href="{% url 'admin:index' %}" class="dropdown-item">Administración</a>
                         </div>
                     </div>
                     {% endif %}
@@ -116,7 +119,7 @@
                     </div>
                 </div>
                 
-                {% if perms.app.view_producto %}
+                {% if perms.app.delete_producto %}
                 <hr>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Administración</a>
@@ -126,6 +129,7 @@
                         <a href="{% url 'listarUsuarios' %}" class="dropdown-item">Listar Usuario</a>
                         <a href="{% url 'agregar_usuario' %}" class="dropdown-item">Agregar Usuario</a>
                         <a href="{% url 'listarSeguimiento' %}" class="dropdown-item">Listar Seguimiento</a>
+                        <a href="{% url 'admin:index' %}" class="dropdown-item">Administración</a>
                     </div>
                 </div>
                 {% endif %}
